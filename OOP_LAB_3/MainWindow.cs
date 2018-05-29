@@ -10,15 +10,8 @@ public partial class MainWindow : Gtk.Window
     public MainWindow() : base(Gtk.WindowType.Toplevel)
     {
         Build();
-        var b = new Bitmap(1000, 700);
-        var scene = Graphics.FromImage(b);
-        //var circle = new Circle(100, new OOP_LAB_3.Model.Point(200,200), scene);
-        //circle.Draw();
-        var unfilledRing = new Ring(100, 120, new OOP_LAB_3.Model.Point(200, 200), scene);
-        unfilledRing.Moved += Handler;
-        unfilledRing.Draw();
-        //unfilledRing.Move(250, 255);
-        b.Save("/home/dimonlu/Projects/image.png", System.DrawingCore.Imaging.ImageFormat.Png);
+        var p = new Picture();
+        p.Add(new Ring(200,250, new OOP_LAB_3.Model.Point(350,350), p.Context));
         var buffer = System.IO.File.ReadAllBytes ("/home/dimonlu/Projects/image.png");
         var pixbuf = new Gdk.Pixbuf (buffer);
         image2.Pixbuf = pixbuf; 
