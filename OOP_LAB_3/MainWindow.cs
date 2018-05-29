@@ -12,8 +12,12 @@ public partial class MainWindow : Gtk.Window
         Build();
         var b = new Bitmap(1000, 700);
         var scene = Graphics.FromImage(b);
-        var circle = new Circle(100, new OOP_LAB_3.Model.Point(500,350), scene);
-        circle.Draw();
+        //var circle = new Circle(100, new OOP_LAB_3.Model.Point(200,200), scene);
+        //circle.Draw();
+        var unfilledRing = new Ring(100, 120, new OOP_LAB_3.Model.Point(200, 200), scene);
+        unfilledRing.Moved += Handler;
+        unfilledRing.Draw();
+        //unfilledRing.Move(250, 255);
         b.Save("/home/dimonlu/Projects/image.png", System.DrawingCore.Imaging.ImageFormat.Png);
         var buffer = System.IO.File.ReadAllBytes ("/home/dimonlu/Projects/image.png");
         var pixbuf = new Gdk.Pixbuf (buffer);
@@ -24,5 +28,9 @@ public partial class MainWindow : Gtk.Window
     {
         Application.Quit();
         a.RetVal = true;
+    }
+    protected static void Handler(Figure f)
+    {
+        
     }
 }
