@@ -136,6 +136,7 @@
     <Compile Include="Model\UnFilledRing.cs" />
     <Compile Include="Model\Ring.cs" />
     <Compile Include="Model\Picture.cs" />
+    <Compile Include="Model\Cylinder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />

@@ -5,7 +5,7 @@ namespace OOP_LAB_3.Model
 {
     public class Circle : Figure
     {
-        public Circle(double radius, Point startPoint, Graphics context)
+        public Circle(double radius, Point startPoint, Graphics context = null)
         {
             Radius = radius;
             Context = context;
@@ -18,13 +18,13 @@ namespace OOP_LAB_3.Model
             set
             {
                 _startPoint = value;
-                Draw();
+                //Draw();
             }
         }
 
         private Point _startPoint;
 
-        public event MovedHandler Moved;
+        public event DrawnHandler Drawn;
 
         public double Radius { get; private set; }
 
@@ -45,6 +45,7 @@ namespace OOP_LAB_3.Model
             {
                 Context.DrawRectangle(Pens.Black, Convert.ToSingle(StartPoint.X + Radius*Math.Cos(i)), Convert.ToSingle(StartPoint.Y + Radius*Math.Sin(i)), 1, 1);
             }
+            Drawn(this);
         }
 
         public void Move(float dX, float dY)
@@ -53,7 +54,7 @@ namespace OOP_LAB_3.Model
             StartPoint.X += dX;
             StartPoint.Y += dY;
             Draw();
-            Moved(this);
+            Drawn(this);
         }
 
         public void Scale(float coeficient)

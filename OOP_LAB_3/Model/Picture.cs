@@ -19,7 +19,7 @@ namespace OOP_LAB_3.Model
         public void Add(Figure f)
         {
             f.Context = Context;
-            f.Moved += Handler;
+            f.Drawn += Handler;
             f.Draw();
             _list.Add(f);
         }
@@ -33,7 +33,7 @@ namespace OOP_LAB_3.Model
             set
             {
                 value.Context = Context;
-                value.Moved += Handler;
+                value.Drawn += Handler;
                 value.Draw();
                 _list[i] = value;
             }

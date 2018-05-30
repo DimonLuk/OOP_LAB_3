@@ -5,12 +5,14 @@ namespace OOP_LAB_3.Model
 {
     public class Ring : UnFilledRing
     {
-        public Ring(float radiusSmall, float radiusBig, Point startPoint, Graphics context) : base(radiusSmall, radiusBig, startPoint, context)
+        public Ring(float radiusSmall, float radiusBig, Point startPoint, Graphics context = null) : base(radiusSmall, radiusBig, startPoint, context)
         {
         }
         public override string Type => "filled ring";
+        public override event DrawnHandler Drawn;
         public override void Draw()
         {
+            base.Drawn += Drawn;
             base.Draw();
             for (double i = 0; i < 1000;i+=1)
             {
@@ -20,6 +22,7 @@ namespace OOP_LAB_3.Model
                         Context.DrawRectangle(Pens.Black, i.ToFloat(), j.ToFloat(), 1, 1);
                 }
             }
+            Drawn(this);
         }
 	}
 }

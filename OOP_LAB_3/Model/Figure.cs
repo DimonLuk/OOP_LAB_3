@@ -3,7 +3,7 @@ using System.DrawingCore;
 
 namespace OOP_LAB_3.Model
 {
-    public delegate void MovedHandler(Figure movedFigure);
+    public delegate void DrawnHandler(Figure movedFigure);
 
     public static class Extensions
     {
@@ -25,6 +25,6 @@ namespace OOP_LAB_3.Model
         string Params { get; }
         Point StartPoint { get; set; }
         Graphics Context { get; set; }
-        event MovedHandler Moved;
+        event DrawnHandler Drawn;
     }
 }

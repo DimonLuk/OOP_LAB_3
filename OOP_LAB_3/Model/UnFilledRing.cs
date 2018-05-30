@@ -5,15 +5,17 @@ namespace OOP_LAB_3.Model
 {
     public class UnFilledRing : Figure
     {
-        public UnFilledRing(float radiusSmall, float radiusBig, Point startPoint, Graphics context)
+        public UnFilledRing(float radiusSmall, float radiusBig, Point startPoint, Graphics context = null)
         {
             RadiusBig = radiusBig;
             RadiusSmall = radiusSmall;
             _startPoint = startPoint;
-            Context = context;
+            _context = context;
             CircleBig = new Circle(RadiusBig, startPoint, Context);
             CircleSmall = new Circle(RadiusSmall, startPoint, context);
         }
+
+        private Graphics _context;
 
         protected Point _startPoint;
 
@@ -21,7 +23,7 @@ namespace OOP_LAB_3.Model
 
         protected Circle CircleSmall;
 
-        public event MovedHandler Moved;
+        virtual public event DrawnHandler Drawn;
 
         public float RadiusBig { get; private set; }
 
@@ -44,15 +46,25 @@ namespace OOP_LAB_3.Model
                 _startPoint = value;
                 CircleBig.StartPoint = value;
                 CircleSmall.StartPoint = value;
-                Draw();
+                //Draw();
             }
         }
-        public Graphics Context { get; set; }
+        public Graphics Context { get => _context; 
+            set
+            {
+                _context = value;
+                CircleBig.Context = value;
+                CircleSmall.Context = value;
+            }
+        }
 
         virtual public void Draw()
         {
+            CircleSmall.Drawn += Drawn;
+            CircleBig.Drawn += Drawn;
             CircleBig.Draw();
             CircleSmall.Draw();
+            Drawn(this);
         }
 
         virtual public void Move(float dX, float dY)
@@ -61,7 +73,7 @@ namespace OOP_LAB_3.Model
             StartPoint.X += dX;
             StartPoint.Y += dY;
             Draw();
-            Moved(this);
+            Drawn(this);
         }
 
         public void Scale(float coeficient)
