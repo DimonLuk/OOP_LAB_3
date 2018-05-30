@@ -139,6 +139,7 @@
     <Compile Include="Model\Cylinder.cs" />
     <Compile Include="Model\Ellips.cs" />
     <Compile Include="Model\Line.cs" />
+    <Compile Include="Model\Sphere.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />

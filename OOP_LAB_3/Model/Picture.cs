@@ -59,7 +59,7 @@ namespace OOP_LAB_3.Model
         {
             foreach(var i in this)
             {
-                if (i != f)
+                if (!i.Equals(f))
                     i.Draw();
             }
         }

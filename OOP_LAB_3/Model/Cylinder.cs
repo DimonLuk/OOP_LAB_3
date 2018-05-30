@@ -10,8 +10,27 @@ namespace OOP_LAB_3.Model
             Radius = radius;
             Height = height;
             Origin = origin;
-            Context = context;
+            _context = context;
+            calculate(_context);
         }
+
+        private void calculate(Graphics context)
+        {
+            float a = Radius / 2;
+            float b = (Radius * Math.Sin(Math.PI / 12)).ToFloat();
+            var lowerOrigin = new Point(Origin.X, Origin.Y + Height);
+            Higher = new Ellips(a, b, Origin, context);
+            Lower = new Ellips(a, b, lowerOrigin, context);
+            LeftLine = new Line(new Point(Origin.X - a, Origin.Y), new Point(Origin.X - a, Origin.Y + Height), context);
+            RightLine = new Line(new Point(Origin.X + a, Origin.Y), new Point(Origin.X + a, Origin.Y + Height), context);
+        }
+
+        public Ellips Higher { get; private set; }
+        public Ellips Lower { get; private set; }
+        public Line LeftLine { get; private set; }
+        public Line RightLine { get; private set; }
+
+        private Graphics _context;
 
         public int Dimension => 2;
 
@@ -31,23 +50,45 @@ namespace OOP_LAB_3.Model
                                               Type, Dimension, Area, Perimeter, Radius, Height, Volume);
 
         public Point Origin { get; set; }
-        public Graphics Context { get; set; }
+        public Graphics Context { get => _context;
+            set
+            {
+                _context = value;
+                Higher.Context = value;
+                Lower.Context = value;
+                LeftLine.Context = value;
+                RightLine.Context = value;
+            }
+        }
 
         public event DrawnHandler Drawn;
 
         public void Draw()
         {
-            throw new NotImplementedException();
+
+            calculate(Context);
+            Higher.Draw();
+            Lower.Draw();
+            LeftLine.Draw();
+            RightLine.Draw();
         }
 
-        public void Move(float dX, float dYs)
+        public void Move(float dX, float dY)
         {
-            throw new NotImplementedException();
+            Context.Clear(new Color());
+            Origin.X += dX;
+            Origin.Y += dY;
+            Draw();
+            Drawn(this);
         }
 
         public void Scale(float coeficient)
         {
-            throw new NotImplementedException();
+            Context.Clear(new Color());
+            Radius *= coeficient;
+            Height *= coeficient;
+            Draw();
+            Drawn(this);
         }
     }
 }
