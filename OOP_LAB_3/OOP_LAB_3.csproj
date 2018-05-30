@@ -138,6 +138,7 @@
     <Compile Include="Model\Picture.cs" />
     <Compile Include="Model\Cylinder.cs" />
     <Compile Include="Model\Ellips.cs" />
+    <Compile Include="Model\Line.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
