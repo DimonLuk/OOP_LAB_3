@@ -63,12 +63,20 @@ namespace OOP_LAB_3.Model
 
         public void Move(float dX, float dY)
         {
-            throw new NotImplementedException();
+            Context.Clear(new Color());
+            Origin.X += dX;
+            Origin.Y += dY;
+            Draw();
+            Drawn(this);
         }
 
         public void Scale(float coeficient)
         {
-            throw new NotImplementedException();
+            Context.Clear(new Color());
+            RadiusBig *= coeficient;
+            RadiusSmall *= coeficient;
+            Draw();
+            Drawn(this);
         }
     }
 }
