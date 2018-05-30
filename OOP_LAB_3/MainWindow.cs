@@ -17,7 +17,7 @@ public partial class MainWindow : Gtk.Window
         p.Add(new Cylinder(100, 300, new OOP_LAB_3.Model.Point(100, 150)));
         p[3].Scale(0.5.ToFloat());
         p[3].Move(500, 0);*/
-        p.Add(new Sphere(100, new OOP_LAB_3.Model.Point(400, 150)));
+        p.Add(new Tor(100,50, new OOP_LAB_3.Model.Point(500,350)));
         p.Display();
         var buffer = System.IO.File.ReadAllBytes ("/home/dimonlu/Projects/image.png");
         var pixbuf = new Gdk.Pixbuf (buffer);

@@ -140,6 +140,7 @@
     <Compile Include="Model\Ellips.cs" />
     <Compile Include="Model\Line.cs" />
     <Compile Include="Model\Sphere.cs" />
+    <Compile Include="Model\Tor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
