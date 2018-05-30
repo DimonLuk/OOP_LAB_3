@@ -14,7 +14,7 @@ namespace OOP_LAB_3.Model
 
         public Graphics Context { get; set; }
 
-        public Point StartPoint { get => _startPoint; 
+        public Point Origin { get => _startPoint; 
             set
             {
                 _startPoint = value;
@@ -26,7 +26,7 @@ namespace OOP_LAB_3.Model
 
         public event DrawnHandler Drawn;
 
-        public double Radius { get; private set; }
+        public double Radius { get; set; }
 
         public int Dimension => 2;
 
@@ -41,26 +41,28 @@ namespace OOP_LAB_3.Model
 
         public void Draw()
         {
+            
             for (double i = 0; i <= 2 * Math.PI; i+=0.0001)
             {
-                Context.DrawRectangle(Pens.Black, Convert.ToSingle(StartPoint.X + Radius*Math.Cos(i)), Convert.ToSingle(StartPoint.Y + Radius*Math.Sin(i)), 1, 1);
+                Context.DrawRectangle(Pens.Black, Convert.ToSingle(Origin.X + Radius*Math.Cos(i)), Convert.ToSingle(Origin.Y + Radius*Math.Sin(i)), 1, 1);
             }
-            Drawn(this);
         }
 
         public void Move(float dX, float dY)
         {
             Context.Clear(new Color());
-            StartPoint.X += dX;
-            StartPoint.Y += dY;
+            Origin.X += dX;
+            Origin.Y += dY;
             Draw();
             Drawn(this);
         }
 
         public void Scale(float coeficient)
         {
+            Context.Clear(new Color());
             Radius *= coeficient;
             Draw();
+            Drawn(this);
         }
     }
 }

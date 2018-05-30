@@ -11,6 +11,10 @@ namespace OOP_LAB_3.Model
         {
             return Convert.ToSingle(d);
         }
+        public static double ToDouble(this float f)
+        {
+            return Convert.ToDouble(f);
+        }
     }
 
     public interface Figure
@@ -18,12 +22,12 @@ namespace OOP_LAB_3.Model
         void Draw();
         int Dimension { get; }
         string Type { get; }
-        void Move(float dX, float dYs);
+        void Move(float dX, float dY);
         void Scale(float coeficient);
         double Area { get; }
         double Perimeter { get; }
         string Params { get; }
-        Point StartPoint { get; set; }
+        Point Origin { get; set; }
         Graphics Context { get; set; }
         event DrawnHandler Drawn;
     }

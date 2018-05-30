@@ -40,12 +40,12 @@ namespace OOP_LAB_3.Model
         public string Params => String.Format("Type: {0}, dimension: {1}, area: {2}, perimeter: {3}, radiusSmall: {4}, radisuBig: {5}",
                                               Type, Dimension, Area, Perimeter, RadiusSmall, RadiusBig);
 
-        public Point StartPoint { get => _startPoint; 
+        public Point Origin { get => _startPoint; 
             set
             {
                 _startPoint = value;
-                CircleBig.StartPoint = value;
-                CircleSmall.StartPoint = value;
+                CircleBig.Origin = value;
+                CircleSmall.Origin = value;
                 //Draw();
             }
         }
@@ -64,21 +64,25 @@ namespace OOP_LAB_3.Model
             CircleBig.Drawn += Drawn;
             CircleBig.Draw();
             CircleSmall.Draw();
-            Drawn(this);
+            //Drawn(this);
         }
 
         virtual public void Move(float dX, float dY)
         {
             Context.Clear(new Color());
-            StartPoint.X += dX;
-            StartPoint.Y += dY;
+            Origin.X += dX;
+            Origin.Y += dY;
             Draw();
             Drawn(this);
         }
 
         public void Scale(float coeficient)
         {
-            throw new NotImplementedException();
+            Context.Clear(new Color());
+            CircleSmall.Radius *= coeficient;
+            CircleBig.Radius *= coeficient;
+            Draw();
+            Drawn(this);
         }
     }
 }

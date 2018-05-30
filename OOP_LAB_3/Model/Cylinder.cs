@@ -5,8 +5,12 @@ namespace OOP_LAB_3.Model
 {
     public class Cylinder : Figure
     {
-        public Cylinder()
+        public Cylinder(float radius, float height, Point origin, Graphics context = null)
         {
+            Radius = radius;
+            Height = height;
+            Origin = origin;
+            Context = context;
         }
 
         public int Dimension => 2;
@@ -26,8 +30,8 @@ namespace OOP_LAB_3.Model
         public string Params => String.Format("Type: {0}, dimension: {1}, area: {2}, perimeter: {3}, radius: {4}, height: {5}, volume: {6}",
                                               Type, Dimension, Area, Perimeter, Radius, Height, Volume);
 
-        public Point StartPoint { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Graphics Context { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Point Origin { get; set; }
+        public Graphics Context { get; set; }
 
         public event DrawnHandler Drawn;
 

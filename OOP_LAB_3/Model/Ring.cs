@@ -18,11 +18,10 @@ namespace OOP_LAB_3.Model
             {
                 for (double j = 0; j < 700;j+=1)
                 {
-                    if (Math.Pow(i-StartPoint.X,2) + Math.Pow(j-StartPoint.Y,2) > Math.Pow(CircleSmall.Radius,2) && Math.Pow(i-StartPoint.X, 2) + Math.Pow(j-StartPoint.Y, 2) < Math.Pow(CircleBig.Radius, 2))
+                    if (Math.Pow(i-Origin.X,2) + Math.Pow(j-Origin.Y,2) > Math.Pow(CircleSmall.Radius,2) && Math.Pow(i-Origin.X, 2) + Math.Pow(j-Origin.Y, 2) < Math.Pow(CircleBig.Radius, 2))
                         Context.DrawRectangle(Pens.Black, i.ToFloat(), j.ToFloat(), 1, 1);
                 }
             }
-            Drawn(this);
         }
 	}
 }
