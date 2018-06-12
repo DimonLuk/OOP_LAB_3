@@ -61,8 +61,22 @@ namespace OOP_LAB_3.Model
         {
             Context.Clear(new Color());
             Radius *= coeficient;
+            Origin.X *= coeficient;
+            Origin.Y *= coeficient;
             Draw();
             Drawn(this);
+        }
+
+        public bool isInConture(Point p)
+        {
+            for (double i = 0; i <= 2 * Math.PI;i+=0.0001)
+            {
+                if(p.X == (Origin.X + Radius*Math.Cos(i)) && p.Y == (Origin.Y + Radius*Math.Sin(i)))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

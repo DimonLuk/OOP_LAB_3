@@ -61,12 +61,28 @@ namespace OOP_LAB_3.Model
 
         public void Move(float dX, float dY)
         {
-            throw new NotImplementedException();
+            Context.Clear(new Color());
+            Origin.X += dX;
+            Origin.Y += dY;
+            Draw();
+            Drawn(this);
         }
 
         public void Scale(float coeficient)
         {
-            throw new NotImplementedException();
+            Context.Clear(new Color());
+            Radius *= coeficient;
+            Origin.X *= coeficient;
+            Origin.Y *= coeficient;
+            Draw();
+            Drawn(this);
+        }
+
+        public bool isInConture(Point p)
+        {
+            if (circle.isInConture(p) || ellips.isInConture(p))
+                return true;
+            return false;
         }
     }
 }

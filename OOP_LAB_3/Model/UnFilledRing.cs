@@ -79,10 +79,19 @@ namespace OOP_LAB_3.Model
         public void Scale(float coeficient)
         {
             Context.Clear(new Color());
+            Origin.X *= coeficient;
+            Origin.Y *= coeficient;
             CircleSmall.Radius *= coeficient;
             CircleBig.Radius *= coeficient;
             Draw();
             Drawn(this);
+        }
+
+        public bool isInConture(Point p)
+        {
+            if (CircleBig.isInConture(p) || CircleSmall.isInConture(p))
+                return true;
+            return false;
         }
     }
 }

@@ -87,8 +87,17 @@ namespace OOP_LAB_3.Model
             Context.Clear(new Color());
             Radius *= coeficient;
             Height *= coeficient;
+            Origin.X *= coeficient;
+            Origin.Y *= coeficient;
             Draw();
             Drawn(this);
+        }
+
+        public bool isInConture(Point p)
+        {
+            if (Higher.isInConture(p) || Lower.isInConture(p) || LeftLine.isInConture(p) || RightLine.isInConture(p))
+                return true;
+            return false;
         }
     }
 }

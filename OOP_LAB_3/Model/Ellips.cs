@@ -41,6 +41,18 @@ namespace OOP_LAB_3.Model
             }
         }
 
+        public bool isInConture(Point p)
+        {
+            for (double i = 0; i <= 2 * Math.PI;i+=0.001)
+            {
+                if(p.X == Origin.Y + A*Math.Cos(i) && p.Y == Origin.Y + B*Math.Sin(i))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public void Move(float dX, float dYs)
         {
             Context.Clear(new Color());
@@ -57,6 +69,9 @@ namespace OOP_LAB_3.Model
 
             A *= coeficient;
             B *= coeficient;
+
+            Origin.X *= coeficient;
+            Origin.Y *= coeficient;
 
             Draw();
             Drawn(this);

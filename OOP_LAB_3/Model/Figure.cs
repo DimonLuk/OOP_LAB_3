@@ -29,6 +29,7 @@ namespace OOP_LAB_3.Model
         string Params { get; }
         Point Origin { get; set; }
         Graphics Context { get; set; }
+        bool isInConture(Point p);
         event DrawnHandler Drawn;
     }
 }

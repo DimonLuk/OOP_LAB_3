@@ -2,9 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.DrawingCore;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace OOP_LAB_3.Model
 {
+    [Serializable]
     public class Picture : IEnumerable<Figure>
     {
         List<Figure> _list = new List<Figure>();
@@ -72,6 +76,40 @@ namespace OOP_LAB_3.Model
         {
             foreach (var i in this)
                 i.Move(dX, dY);
+        }
+        public static void Serialize(string path, Picture p)
+        {
+            BinaryFormatter f = new BinaryFormatter();
+            using(var fs = new FileStream(path+"/figure.data", FileMode.OpenOrCreate))
+            {
+                try
+                {
+                    f.Serialize(fs, p);
+                } catch(SerializationException)
+                {}
+            }
+        }
+        public static Picture Deserialize(string path)
+        {
+            var f = new BinaryFormatter();
+            Picture p = new Picture();
+            using(var fs = new FileStream(path+"/figure.data", FileMode.Open))
+            {
+                try
+                {
+                    p = (Picture)f.Deserialize(fs);
+                } catch(SerializationException)
+                {}
+            }
+            return p;
+        }
+        public void ChangeColor(Point p)
+        {
+            foreach(var v in _list)
+            {
+                if (v.isInConture(p))
+                    Console.WriteLine(v.Params);
+            }
         }
     }
 }

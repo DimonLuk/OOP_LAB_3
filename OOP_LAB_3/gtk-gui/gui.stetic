@@ -12,8 +12,9 @@
     <property name="WindowPosition">CenterOnParent</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
-      <widget class="Gtk.Alignment" id="alignment2">
+      <widget class="Gtk.EventBox" id="eventbox1">
         <property name="MemberName" />
+        <signal name="ButtonPressEvent" handler="buttonPressHanlder" />
         <child>
           <widget class="Gtk.Image" id="image2">
             <property name="MemberName" />

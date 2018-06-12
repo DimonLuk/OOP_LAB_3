@@ -3,7 +3,7 @@
 
 public partial class MainWindow
 {
-	private global::Gtk.Alignment alignment2;
+	private global::Gtk.EventBox eventbox1;
 
 	private global::Gtk.Image image2;
 
@@ -15,13 +15,13 @@ public partial class MainWindow
 		this.Title = global::Mono.Unix.Catalog.GetString("MainWindow");
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 		// Container child MainWindow.Gtk.Container+ContainerChild
-		this.alignment2 = new global::Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
-		this.alignment2.Name = "alignment2";
-		// Container child alignment2.Gtk.Container+ContainerChild
+		this.eventbox1 = new global::Gtk.EventBox();
+		this.eventbox1.Name = "eventbox1";
+		// Container child eventbox1.Gtk.Container+ContainerChild
 		this.image2 = new global::Gtk.Image();
 		this.image2.Name = "image2";
-		this.alignment2.Add(this.image2);
-		this.Add(this.alignment2);
+		this.eventbox1.Add(this.image2);
+		this.Add(this.eventbox1);
 		if ((this.Child != null))
 		{
 			this.Child.ShowAll();
@@ -30,5 +30,6 @@ public partial class MainWindow
 		this.DefaultHeight = 290;
 		this.Show();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler(this.OnDeleteEvent);
+		this.eventbox1.ButtonPressEvent += new global::Gtk.ButtonPressEventHandler(this.buttonPressHanlder);
 	}
 }

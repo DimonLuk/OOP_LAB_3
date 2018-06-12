@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.DrawingCore;
 
 namespace OOP_LAB_3.Model
@@ -34,21 +35,30 @@ namespace OOP_LAB_3.Model
 
         public event DrawnHandler Drawn;
 
+        private List<Ellips> _ellipses;
+
         public void Draw()
         {
+            _ellipses = new List<Ellips>();
             Point position = Origin;
             for (int i = 8; i > 4;i--)
             {
                 float a = 4*RadiusBig/(i);
                 float b = 4*RadiusSmall/(i);
-                (new Ellips(a, b, position, Context)).Draw();
+                var tmp = new Ellips(a, b, position, Context);
+                tmp.Draw();
+                _ellipses.Add(tmp);
+                //(new Ellips(a, b, position, Context)).Draw();
                     position = new Point(position.X, position.Y - b/8);
             }
             for (int i = 8; i > 4; i--)
             {
                 float a = 7 * RadiusBig / (i);
                 float b = 7 * RadiusSmall / (i);
-                (new Ellips(a, b, position, Context)).Draw();
+                var tmp = new Ellips(a, b, position, Context);
+                tmp.Draw();
+                _ellipses.Add(tmp);
+                //(new Ellips(a, b, position, Context)).Draw();
                 position = new Point(position.X, position.Y + b / 6);
             }
             /*for (int i = 8; i > 6; i--)
@@ -59,6 +69,16 @@ namespace OOP_LAB_3.Model
                 position = new Point(position.X, position.Y - b / 8);
             }*/
 
+        }
+
+        public bool isInConture(Point p)
+        {
+            foreach(var e in _ellipses)
+            {
+                if (e.isInConture(p))
+                    return true;
+            }
+            return false;
         }
 
         public void Move(float dX, float dY)
@@ -75,6 +95,8 @@ namespace OOP_LAB_3.Model
             Context.Clear(new Color());
             RadiusBig *= coeficient;
             RadiusSmall *= coeficient;
+            Origin.X *= coeficient;
+            Origin.Y *= coeficient;
             Draw();
             Drawn(this);
         }
