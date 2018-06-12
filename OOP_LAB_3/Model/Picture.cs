@@ -63,5 +63,15 @@ namespace OOP_LAB_3.Model
                     i.Draw();
             }
         }
+        public void ScaleAll(float c)
+        {
+            foreach (var i in this)
+                i.Scale(c);
+        }
+        public void MoveAll(float dX, float dY)
+        {
+            foreach (var i in this)
+                i.Move(dX, dY);
+        }
     }
 }
